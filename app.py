@@ -48,7 +48,7 @@ app.layout = html.Div([
     
                     html.Div([html.H3("Select Date Range"),
                              dcc.DatePickerRange(id="datepicker", min_date_allowed=datetime(2015,1,1),
-                                                                    max_date_allowed=datetime.today(),
+                                                                    max_date_allowed=datetime(2025,1,1),
                                                                     start_date=datetime(2018,1,1),
                                                                     end_date = datetime.today(),
                                                                     display_format="D-M-Y") 
