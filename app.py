@@ -105,7 +105,7 @@ app.layout = html.Div([
                     
     
                     # Main Graph
-                    dcc.Loading(id="Loading", children = dcc.Graph(id="graph", style={'width': '100vw', 'height': '85vh'}),
+                    dcc.Loading(id="Loading", children = dcc.Graph(id="graph", style={'width': '100vw', 'height': '100vh'}),
                                 type="circle", style={"Size":"30", "Color":"Pink"}),
     
     
@@ -199,15 +199,15 @@ def update_dashboard(submit_button_click, train_button_click, stock_picked, star
         #X_test.shape, y_test.shape
 
         model=Sequential()
-        model.add(LSTM(128,return_sequences=True,input_shape=(n_past,1)))
-        model.add(LSTM(64,return_sequences=True))
-        model.add(LSTM(32))
+        model.add(LSTM(50,return_sequences=True,input_shape=(n_past,1)))
+        #model.add(LSTM(64,return_sequences=True))
+        model.add(LSTM(50))
         model.add(Dense(1))
         model.compile(loss='mean_squared_error',optimizer='adam')
 
-        es = EarlyStopping(monitor='val_loss', mode='min', verbose=1, patience=10, restore_best_weights=True)
+        es = EarlyStopping(monitor='val_loss', mode='min', verbose=1, patience=5, restore_best_weights=True)
 
-        model.fit(X_train, y_train, epochs = 500, batch_size=16, validation_data=(X_test, y_test), verbose=1, callbacks=es)
+        model.fit(X_train, y_train, epochs = 100, batch_size=16, validation_data=(X_test, y_test), verbose=1, callbacks=es)
 
         train_predict=model.predict(X_train)
         test_predict=model.predict(X_test)
