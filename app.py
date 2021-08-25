@@ -43,7 +43,10 @@ from tensorflow.keras.layers import LSTM
 from tensorflow.keras.layers import Dense, Dropout
 from keras.callbacks import EarlyStopping
 
+df = pd.DataFrame()
 
+external_stylesheets = ['https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/lux/bootstrap.min.css',
+                        'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css']
 app = dash.Dash()
 server = app.server
 
