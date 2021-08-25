@@ -60,7 +60,7 @@ app.layout = html.Div([
                                dcc.Input(id="stockpicker", value="TSLA",
                                          style={"fontSize":24,"width":100, "text-align":"center"})
                              ],
-                            style={"display":"inline-block", "verticalAlign":"top" , "width":"45vw","textAlign": "center", "border":"2px solid black"}
+                            style={"display":"inline-block", "verticalAlign":"top" , "width":"50vw","textAlign": "center"}
                             ),
     
                     
@@ -73,7 +73,7 @@ app.layout = html.Div([
                                                                     end_date =  datetime.today().strftime('%Y-%m-%d'),
                                                                     display_format="D-M-Y")
                              ],
-                            style={"display":"inline-block","verticalAlign":"top", "textAlign":"center", "width":"45vw", "border":"2px solid black"}
+                            style={"display":"inline-block","verticalAlign":"top", "textAlign":"center", "width":"50vw"}
                             ),
                     
                     
