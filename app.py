@@ -109,7 +109,7 @@ app.layout = html.Div([
                     
                             
                             
-],style = {"backgroundColor":"Black"}) 
+],style = {"backgroundColor":"Black", "width":"100vw"}) 
 
 
 
