@@ -190,7 +190,7 @@ def update_dashboard(submit_button_click, train_button_click, stock_picked, star
 
         #es = EarlyStopping(monitor='val_loss', mode='min', verbose=1, patience=5, restore_best_weights=True)
 
-        model.fit(X_train, y_train, epochs = 20, batch_size=16, validation_data=(X_test, y_test), verbose=1)
+        model.fit(X_train, y_train, epochs = 10, batch_size=16, validation_data=(X_test, y_test), verbose=1)
 
         train_predict=model.predict(X_train)
         test_predict=model.predict(X_test)
