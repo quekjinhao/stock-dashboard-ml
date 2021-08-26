@@ -1,47 +1,30 @@
 import dash
-import pandas_datareader.data as web
 import dash_core_components as dcc
 import dash_html_components as html
 from dash.dependencies import Input, Output, State
-import pandas_datareader.data as web
+#import pandas_datareader.data as web
 #from jupyter_dash import JupyterDash
-import dash_core_components as dcc
-import dash_html_components as html
-from dash.dependencies import Input, Output, State
-import dash
-import json
-import requests
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
 
-import scipy.stats
-import pylab
 
-import statsmodels.graphics.tsaplots as sgt
-import statsmodels.tsa.stattools as sts
-from statsmodels.tsa.seasonal import seasonal_decompose
 
-from statsmodels.tsa.arima_model import ARMA
-from statsmodels.tsa.arima_model import ARIMA
-from scipy.stats.distributions import chi2
 import yfinance as yf
-from pmdarima import auto_arima
 from datetime import datetime
-import chart_studio.plotly as py
+
 import plotly.express as px
-import plotly.offline as pyo
-import cufflinks as cf
+
 
 from sklearn.preprocessing import MinMaxScaler
 import random
 
-import plotly.graph_objects as go
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import LSTM
-from tensorflow.keras.layers import Dense, Dropout
+from tensorflow.keras.layers import Dense
 from keras.callbacks import EarlyStopping
+
+import gc
+from keras import backend as K
 
 df = pd.DataFrame()
 
@@ -205,9 +188,9 @@ def update_dashboard(submit_button_click, train_button_click, stock_picked, star
         model.add(Dense(1))
         model.compile(loss='mean_squared_error',optimizer='adam')
 
-        es = EarlyStopping(monitor='val_loss', mode='min', verbose=1, patience=5, restore_best_weights=True)
+        #es = EarlyStopping(monitor='val_loss', mode='min', verbose=1, patience=5, restore_best_weights=True)
 
-        model.fit(X_train, y_train, epochs = 100, batch_size=16, validation_data=(X_test, y_test), verbose=1, callbacks=es)
+        model.fit(X_train, y_train, epochs = 20, batch_size=16, validation_data=(X_test, y_test), verbose=1)
 
         train_predict=model.predict(X_train)
         test_predict=model.predict(X_test)
@@ -254,7 +237,10 @@ def update_dashboard(submit_button_click, train_button_click, stock_picked, star
         fig.update_layout(title_x=0.5, hovermode="x", showlegend=True, plot_bgcolor="White", paper_bgcolor="Black",
                              font=dict(family="Courier New, monospace", size=20, color="White"))
 
-       
+        K.clear_session()
+        gc.collect()
+        del model
+        
         
         
         return fig
